@@ -1,6 +1,7 @@
 package id.dikisiswanto.jetpackacademy.ui.tv;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.ui.detail.DetailActivity;
 
 public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder> {
 	private Activity activity;
@@ -53,6 +55,14 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
 			super(itemView);
 			title = itemView.findViewById(R.id.title);
 			poster = itemView.findViewById(R.id.poster);
+			itemView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent details = new Intent(view.getContext(), DetailActivity.class);
+					details.putExtra(DetailActivity.ENTITY_ID, tvShows.get(getAdapterPosition()).getId());
+					view.getContext().startActivity(details);
+				}
+			});
 		}
 
 		void bind(MovieEntity tvShow) {

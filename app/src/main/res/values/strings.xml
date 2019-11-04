@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">Jetpack Academy</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="release_date_label">Release Date</string>
+    <string name="overview_label">Overview</string>
+    <string-array name="movie_id">
+        <item>m01</item>
+        <item>m02</item>
+        <item>m03</item>
+        <item>m04</item>
+        <item>m05</item>
+        <item>m06</item>
+        <item>m07</item>
+        <item>m08</item>
+        <item>m09</item>
+        <item>m10</item>
+    </string-array>
     <string-array name="title">
         <item>Avengers: Infinity War</item>
         <item>Bird Box</item>
@@ -72,6 +86,18 @@
         <item>@drawable/poster_glass</item>
         <item>@drawable/poster_preman</item>
         <item>@drawable/poster_creed</item>
+    </string-array>
+    <string-array name="tvs_id">
+        <item>t01</item>
+        <item>t02</item>
+        <item>t03</item>
+        <item>t04</item>
+        <item>t05</item>
+        <item>t06</item>
+        <item>t07</item>
+        <item>t08</item>
+        <item>t09</item>
+        <item>t10</item>
     </string-array>
     <string-array name="tvs_title">
         <item>Dragon Ball</item>

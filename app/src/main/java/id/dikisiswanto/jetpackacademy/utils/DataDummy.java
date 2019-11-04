@@ -10,6 +10,7 @@ import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.data.MovieEntity;
 
 public class DataDummy {
+	private static String[] id;
 	private static String[] title;
 	private static String[] releaseDate;
 	private static String[] description;
@@ -23,6 +24,7 @@ public class DataDummy {
 		initMovies(context);
 		for (int i = 0; i < title.length; i++) {
 			movie = new MovieEntity();
+			movie.setId(id[i]);
 			movie.setTitle(title[i]);
 			movie.setDescription(description[i]);
 			movie.setReleaseDate(releaseDate[i]);
@@ -40,6 +42,7 @@ public class DataDummy {
 		initTvShow(context);
 		for (int i = 0; i < title.length; i++) {
 			tvShow = new MovieEntity();
+			tvShow.setId(id[i]);
 			tvShow.setTitle(title[i]);
 			tvShow.setDescription(description[i]);
 			tvShow.setReleaseDate(releaseDate[i]);
@@ -52,6 +55,7 @@ public class DataDummy {
 	}
 
 	private static void initMovies(Context context) {
+		id = context.getResources().getStringArray(R.array.movie_id);
 		title = context.getResources().getStringArray(R.array.title);
 		description = context.getResources().getStringArray(R.array.description);
 		releaseDate = context.getResources().getStringArray(R.array.release_date);
@@ -61,6 +65,7 @@ public class DataDummy {
 	}
 
 	private static void initTvShow(Context context) {
+		id = context.getResources().getStringArray(R.array.tvs_id);
 		title = context.getResources().getStringArray(R.array.tvs_title);
 		description = context.getResources().getStringArray(R.array.tvs_description);
 		releaseDate = context.getResources().getStringArray(R.array.tvs_release_date);

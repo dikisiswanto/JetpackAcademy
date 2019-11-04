@@ -1,6 +1,7 @@
 package id.dikisiswanto.jetpackacademy.data;
 
 public class MovieEntity {
+	private String id;
 	private String title;
 	private String releaseDate;
 	private String description;
@@ -12,13 +13,22 @@ public class MovieEntity {
 		// empty constructor
 	}
 
-	public MovieEntity(String title, String releaseDate, String description, String runtime, String originalLanguage, int poster) {
+	public MovieEntity(String id, String title, String releaseDate, String description, String runtime, String originalLanguage, int poster) {
+		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.description = description;
 		this.runtime = runtime;
 		this.originalLanguage = originalLanguage;
 		this.poster = poster;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {

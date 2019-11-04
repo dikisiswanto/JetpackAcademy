@@ -1,6 +1,7 @@
 package id.dikisiswanto.jetpackacademy.ui.movie;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.ui.detail.DetailActivity;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -54,6 +56,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 			super(itemView);
 			title = itemView.findViewById(R.id.title);
 			poster = itemView.findViewById(R.id.poster);
+			itemView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent details = new Intent(view.getContext(), DetailActivity.class);
+					details.putExtra(DetailActivity.ENTITY_ID, movies.get(getAdapterPosition()).getId());
+					view.getContext().startActivity(details);
+				}
+			});
 		}
 
 		void bind(MovieEntity movie) {
