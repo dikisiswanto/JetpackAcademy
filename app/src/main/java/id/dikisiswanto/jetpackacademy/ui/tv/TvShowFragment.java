@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.movie;
+package id.dikisiswanto.jetpackacademy.ui.tv;
 
 
 import android.os.Bundle;
@@ -21,11 +21,11 @@ import id.dikisiswanto.jetpackacademy.data.MovieEntity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment {
+public class TvShowFragment extends Fragment {
 
-	private RecyclerView rvMovie;
+	private RecyclerView rvTvShow;
 
-	public MovieFragment() {
+	public TvShowFragment() {
 		// Required empty public constructor
 	}
 
@@ -34,28 +34,28 @@ public class MovieFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_movie, container, false);
+		return inflater.inflate(R.layout.fragment_tv_show, container, false);
 	}
 
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		rvMovie = view.findViewById(R.id.rv_movie);
+		rvTvShow = view.findViewById(R.id.rv_movie);
 	}
 
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
-			MovieViewModel viewModel = ViewModelProviders.of(this).get(MovieViewModel.class);
-			List<MovieEntity> movies = viewModel.getMovies(getContext());
+			TvShowViewModel viewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
+			List<MovieEntity> tvShows = viewModel.getTvShows(getContext());
 
-			MovieAdapter adapter = new MovieAdapter(getActivity());
-			adapter.setMovies(movies);
+			TvShowAdapter adapter = new TvShowAdapter(getActivity());
+			adapter.setTvShows(tvShows);
 
-			rvMovie.setLayoutManager(new GridLayoutManager(getContext(), 3));
-			rvMovie.setHasFixedSize(true);
-			rvMovie.setAdapter(adapter);
+			rvTvShow.setLayoutManager(new GridLayoutManager(getContext(), 3));
+			rvTvShow.setHasFixedSize(true);
+			rvTvShow.setAdapter(adapter);
 		}
 	}
 }

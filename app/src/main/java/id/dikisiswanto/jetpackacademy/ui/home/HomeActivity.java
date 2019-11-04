@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.ui.movie.MovieFragment;
+import id.dikisiswanto.jetpackacademy.ui.tv.TvShowFragment;
 
 import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
 
@@ -33,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 	private void setupViewPager(ViewPager viewPager) {
 		ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 		adapter.addFragment(new MovieFragment(), "Movies");
+		adapter.addFragment(new TvShowFragment(), "TV Shows");
 		viewPager.setAdapter(adapter);
 	}
 }
