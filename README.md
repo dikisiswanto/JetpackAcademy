@@ -1,5 +1,3 @@
 # JetpackAcademy
 Project Jetpack Academy Dicoding
-
-# Build status
-![](https://github.com/dikisiswanto/JetpackAcademy/workflows/Jetpack%20Academy/badge.svg)
+![](https://github.com/dikisiswanto/JetpackAcademy/workflows/.github/workflows/gradle.yml/badge.svg)
