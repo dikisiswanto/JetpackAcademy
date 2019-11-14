@@ -25,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
 			String entityId = extra.getString(ENTITY_ID);
 			if (entityId != null) {
 				viewModel.setId(entityId);
-				MovieEntity entity = viewModel.getDetails(getApplicationContext());
+				MovieEntity entity = viewModel.getDetails();
 				populateDetails(entity);
 			} else {
 				finish();
@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
 		originalLanguage.setText(entity.getOriginalLanguage());
 		releaseDate.setText(entity.getReleaseDate());
 		runtime.setText(entity.getRuntime());
-		poster.setImageResource(entity.getPoster());
-		backdrop.setImageResource(entity.getPoster());
+		poster.setImageResource(getResources().getIdentifier(entity.getPoster(), "drawable", getApplicationContext().getPackageName()));
+		backdrop.setImageResource(getResources().getIdentifier(entity.getPoster(), "drawable", getApplicationContext().getPackageName()));
 	}
 }

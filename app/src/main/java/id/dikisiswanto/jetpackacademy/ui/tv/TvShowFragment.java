@@ -22,7 +22,6 @@ import id.dikisiswanto.jetpackacademy.data.MovieEntity;
  * A simple {@link Fragment} subclass.
  */
 public class TvShowFragment extends Fragment {
-
 	private RecyclerView rvTvShow;
 
 	public TvShowFragment() {
@@ -40,7 +39,7 @@ public class TvShowFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		rvTvShow = view.findViewById(R.id.rv_movie);
+		rvTvShow = view.findViewById(R.id.rv_tvshow);
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class TvShowFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
 			TvShowViewModel viewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
-			List<MovieEntity> tvShows = viewModel.getTvShows(getContext());
+			List<MovieEntity> tvShows = viewModel.getTvShows();
 
 			TvShowAdapter adapter = new TvShowAdapter(getActivity());
 			adapter.setTvShows(tvShows);
@@ -58,4 +57,5 @@ public class TvShowFragment extends Fragment {
 			rvTvShow.setAdapter(adapter);
 		}
 	}
+
 }

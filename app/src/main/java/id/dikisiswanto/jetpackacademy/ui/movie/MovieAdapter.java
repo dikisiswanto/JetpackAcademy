@@ -68,7 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
 		void bind(MovieEntity movie) {
 			title.setText(movie.getTitle());
-			poster.setImageResource(movie.getPoster());
+			poster.setImageResource(itemView.getResources().getIdentifier(movie.getPoster(), "drawable", itemView.getContext().getPackageName()));
 		}
 	}
 }
