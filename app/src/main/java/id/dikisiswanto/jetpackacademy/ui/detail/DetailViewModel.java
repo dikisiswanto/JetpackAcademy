@@ -1,7 +1,5 @@
 package id.dikisiswanto.jetpackacademy.ui.detail;
 
-import android.content.Context;
-
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
@@ -14,11 +12,10 @@ public class DetailViewModel extends ViewModel {
 	private MovieEntity entity;
 	private String id;
 
-	public MovieEntity getDetails(Context context) {
+	MovieEntity getDetails() {
 		List<MovieEntity> entityList = new ArrayList<>();
-		entityList.addAll(DataDummy.getMovies(context));
-		entityList.addAll(DataDummy.getTvShows(context));
-
+		entityList.addAll(DataDummy.getMovies());
+		entityList.addAll(DataDummy.getTvShows());
 		for (int i = 0; i < entityList.size(); i++) {
 			MovieEntity mEntity = entityList.get(i);
 			if (mEntity.getId().equals(id)) {

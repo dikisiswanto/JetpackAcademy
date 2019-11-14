@@ -16,6 +16,8 @@ import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ON
 
 public class HomeActivity extends AppCompatActivity {
 
+	ViewPagerAdapter adapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,9 +34,13 @@ public class HomeActivity extends AppCompatActivity {
 	}
 
 	private void setupViewPager(ViewPager viewPager) {
-		ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+		adapter = new ViewPagerAdapter(getSupportFragmentManager(), BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 		adapter.addFragment(new MovieFragment(), "Movies");
 		adapter.addFragment(new TvShowFragment(), "TV Shows");
 		viewPager.setAdapter(adapter);
+	}
+
+	public ViewPagerAdapter getAdapter() {
+		return adapter;
 	}
 }

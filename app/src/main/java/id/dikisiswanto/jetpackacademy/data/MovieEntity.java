@@ -7,13 +7,12 @@ public class MovieEntity {
 	private String description;
 	private String runtime;
 	private String originalLanguage;
-	private int poster;
+	private String poster;
 
 	public MovieEntity() {
-		// empty constructor
 	}
 
-	public MovieEntity(String id, String title, String releaseDate, String description, String runtime, String originalLanguage, int poster) {
+	public MovieEntity(String id, String title, String releaseDate, String description, String runtime, String originalLanguage, String poster) {
 		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
@@ -71,11 +70,11 @@ public class MovieEntity {
 		this.originalLanguage = originalLanguage;
 	}
 
-	public int getPoster() {
+	public String getPoster() {
 		return poster;
 	}
 
-	public void setPoster(int poster) {
+	public void setPoster(String poster) {
 		this.poster = poster;
 	}
 }

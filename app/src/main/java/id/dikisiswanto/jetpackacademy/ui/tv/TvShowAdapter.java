@@ -67,7 +67,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
 
 		void bind(MovieEntity tvShow) {
 			title.setText(tvShow.getTitle());
-			poster.setImageResource(tvShow.getPoster());
+			poster.setImageResource(itemView.getResources().getIdentifier(tvShow.getPoster(), "drawable", itemView.getContext().getPackageName()));
 		}
 	}
 }
