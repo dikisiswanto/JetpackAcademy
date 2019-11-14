@@ -15,6 +15,7 @@ import id.dikisiswanto.jetpackacademy.R;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
+import static androidx.test.espresso.action.ViewActions.swipeRight;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -43,6 +44,9 @@ public class HomeActivityTest {
 
 		onView(withId(R.id.viewpager))
 				.perform(swipeLeft());
+
+		onView(withId(R.id.viewpager))
+				.perform(swipeRight());
 	}
 
 	@Test
