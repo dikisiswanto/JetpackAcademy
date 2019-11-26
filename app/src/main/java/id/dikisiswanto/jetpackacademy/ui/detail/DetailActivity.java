@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 public class DetailActivity extends AppCompatActivity {
 

@@ -3,7 +3,7 @@ package id.dikisiswanto.jetpackacademy.ui.detail;
 import org.junit.Before;
 import org.junit.Test;
 
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

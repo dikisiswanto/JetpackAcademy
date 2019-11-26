@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.data;
+package id.dikisiswanto.jetpackacademy.data.source.local.entity;
 
 public class MovieEntity {
 	private String id;

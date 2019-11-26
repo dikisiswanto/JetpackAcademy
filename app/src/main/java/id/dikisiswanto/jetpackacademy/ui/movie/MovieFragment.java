@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 /**
  * A simple {@link Fragment} subclass.

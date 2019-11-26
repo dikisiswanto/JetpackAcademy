@@ -11,7 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
 
 import static androidx.test.espresso.Espresso.onView;

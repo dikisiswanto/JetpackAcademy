@@ -3,7 +3,7 @@ package id.dikisiswanto.jetpackacademy.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 public class DataDummy {
 	private static final String[][] movieData = {
