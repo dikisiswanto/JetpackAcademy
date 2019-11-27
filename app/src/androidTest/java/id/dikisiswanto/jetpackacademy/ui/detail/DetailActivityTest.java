@@ -50,8 +50,8 @@ public class DetailActivityTest {
 		onView(withId(R.id.overview)).check(matches(withText(dummyEntitiy.getDescription())));
 		onView(withId(R.id.release_date)).check(matches(isDisplayed()));
 		onView(withId(R.id.release_date)).check(matches(withText(dummyEntitiy.getReleaseDate())));
-		onView(withId(R.id.runtime)).check(matches(isDisplayed()));
-		onView(withId(R.id.runtime)).check(matches(withText(dummyEntitiy.getRuntime())));
+		onView(withId(R.id.vote_average)).check(matches(isDisplayed()));
+		onView(withId(R.id.vote_average)).check(matches(withText(dummyEntitiy.getVoteAverage())));
 		onView(withId(R.id.original_language)).check(matches(isDisplayed()));
 		onView(withId(R.id.original_language)).check(matches(withText(dummyEntitiy.getOriginalLanguage())));
 		onView(withId(R.id.poster)).check(matches(isDisplayed()));

@@ -5,24 +5,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
+import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TvShowFragment extends Fragment {
 	private RecyclerView rvTvShow;
+	private ProgressBar progressBar;
 
 	public TvShowFragment() {
 		// Required empty public constructor
@@ -40,17 +41,23 @@ public class TvShowFragment extends Fragment {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		rvTvShow = view.findViewById(R.id.rv_tvshow);
+		progressBar = view.findViewById(R.id.progress);
 	}
 
 	@Override
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
-			TvShowViewModel viewModel = ViewModelProviders.of(this).get(TvShowViewModel.class);
-			List<MovieEntity> tvShows = viewModel.getTvShows();
-
+			TvShowViewModel viewModel = obtainViewModel(getActivity());
 			TvShowAdapter adapter = new TvShowAdapter(getActivity());
-			adapter.setTvShows(tvShows);
+
+			progressBar.setVisibility(View.VISIBLE);
+
+			viewModel.getTvShows().observe(this, tvshows -> {
+				progressBar.setVisibility(View.GONE);
+				adapter.setTvShows(tvshows);
+				adapter.notifyDataSetChanged();
+			});
 
 			rvTvShow.setLayoutManager(new GridLayoutManager(getContext(), 3));
 			rvTvShow.setHasFixedSize(true);
@@ -58,4 +65,10 @@ public class TvShowFragment extends Fragment {
 		}
 	}
 
+	@NonNull
+	private static TvShowViewModel obtainViewModel(FragmentActivity activity) {
+		// Use a Factory to inject dependencies into the ViewModel
+		ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+		return ViewModelProviders.of(activity, factory).get(TvShowViewModel.class);
+	}
 }

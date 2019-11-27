@@ -40,7 +40,7 @@ public class FakeDataDummy {
 			movie.setTitle(data[1]);
 			movie.setDescription(data[2]);
 			movie.setReleaseDate(data[3]);
-			movie.setRuntime(data[4]);
+			movie.setVoteAverage(data[4]);
 			movie.setOriginalLanguage(data[5]);
 			movie.setPoster(data[6]);
 			movies.add(movie);
@@ -57,7 +57,7 @@ public class FakeDataDummy {
 			tvShow.setTitle(data[1]);
 			tvShow.setDescription(data[2]);
 			tvShow.setReleaseDate(data[3]);
-			tvShow.setRuntime(data[4]);
+			tvShow.setVoteAverage(data[4]);
 			tvShow.setOriginalLanguage(data[5]);
 			tvShow.setPoster(data[6]);
 			tvShows.add(tvShow);

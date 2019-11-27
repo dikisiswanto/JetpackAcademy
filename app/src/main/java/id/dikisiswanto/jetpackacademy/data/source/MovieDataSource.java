@@ -1,15 +1,17 @@
 package id.dikisiswanto.jetpackacademy.data.source;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 public interface MovieDataSource {
-	List<MovieEntity> getAllMovies();
+	LiveData<List<MovieEntity>> getAllMovies();
 
-	MovieEntity getMovieById(String movieId);
+	LiveData<MovieEntity> getMovieById(String movieId);
 
-	List<MovieEntity> getAllTvShows();
+	LiveData<List<MovieEntity>> getAllTvShows();
 
-	MovieEntity getTvShowById(String tvShowId);
+	LiveData<MovieEntity> getTvShowById(String tvShowId);
 }
