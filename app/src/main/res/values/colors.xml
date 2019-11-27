@@ -4,4 +4,5 @@
     <color name="primaryDarkColor">#000000</color>
     <color name="secondaryColor">#d50000</color>
     <color name="primaryTextColor">#ffffff</color>
+    <color name="lightGrayColor">#DADADA</color>
 </resources>

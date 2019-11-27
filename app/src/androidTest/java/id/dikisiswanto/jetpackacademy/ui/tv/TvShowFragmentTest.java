@@ -2,14 +2,17 @@ package id.dikisiswanto.jetpackacademy.ui.tv;
 
 import android.content.Intent;
 
+import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.ui.home.HomeActivity;
+import id.dikisiswanto.jetpackacademy.utils.EspressoIdlingResource;
 import id.dikisiswanto.jetpackacademy.utils.RecyclerViewItemCountAssertion;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -26,11 +29,17 @@ public class TvShowFragmentTest {
 	public void setUp() {
 		activityRule.launchActivity(new Intent());
 		onView(withId(R.id.viewpager)).perform(swipeLeft());
+		IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
 	}
 
+	@After
+	public void tearDown() {
+		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+	}
+	
 	@Test
 	public void loadTvShows() {
 		onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()));
-		onView(withId(R.id.rv_tvshow)).check(new RecyclerViewItemCountAssertion(10));
+		onView(withId(R.id.rv_tvshow)).check(new RecyclerViewItemCountAssertion(20));
 	}
 }

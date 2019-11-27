@@ -1,26 +1,29 @@
 package id.dikisiswanto.jetpackacademy.ui.detail;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
-import id.dikisiswanto.jetpackacademy.utils.DataDummy;
+import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 
 public class DetailViewModel extends ViewModel {
-	private MovieEntity entity;
+	private MovieRepository movieRepository;
+	private LiveData<MovieEntity> entity = null;
 	private String id;
+	private int type;
 
-	MovieEntity getDetails() {
-		List<MovieEntity> entityList = new ArrayList<>();
-		entityList.addAll(DataDummy.getMovies());
-		entityList.addAll(DataDummy.getTvShows());
-		for (int i = 0; i < entityList.size(); i++) {
-			MovieEntity mEntity = entityList.get(i);
-			if (mEntity.getId().equals(id)) {
-				entity = mEntity;
-			}
+	public DetailViewModel(MovieRepository movieRepository) {
+		this.movieRepository = movieRepository;
+	}
+
+	LiveData<MovieEntity> getDetails() {
+		switch (type) {
+			case 1:
+				entity = movieRepository.getMovieById(id);
+				break;
+			case 2:
+				entity = movieRepository.getTvShowById(id);
+				break;
 		}
 		return entity;
 	}
@@ -31,5 +34,13 @@ public class DetailViewModel extends ViewModel {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 }

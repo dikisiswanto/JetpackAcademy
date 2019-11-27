@@ -1,34 +1,47 @@
 package id.dikisiswanto.jetpackacademy.ui.detail;
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
-import id.dikisiswanto.jetpackacademy.data.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
+import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
+import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class DetailViewModelTest {
-	private MovieEntity dummyEntity;
+	@Rule
+	public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
 	private DetailViewModel viewModel;
+	private MovieRepository movieRepository = mock(MovieRepository.class);
+	private MovieEntity dummyMovie = FakeDataDummy.getMovies().get(0);
+	private String movieId = dummyMovie.getId();
+	private static final int MOVIE_TYPE = 1;
 
 	@Before
 	public void setUp() {
-		viewModel = new DetailViewModel();
-		dummyEntity = new MovieEntity("m06", "Spider-Man: Into the Spider-Verse", "December 6, 2018", "Miles Morales is juggling his life between being a high school student and being a spider-man. When Wilson \"Kingpin\" Fisk uses a super collider, others from across the Spider-Verse are transported to this dimension.", "1h 57m", "English", "@drawable/poster_spiderman");
+		viewModel = new DetailViewModel(movieRepository);
+		viewModel.setId(movieId);
+		viewModel.setType(MOVIE_TYPE);
 	}
 
 	@Test
 	public void getDetails() {
-		viewModel.setId(dummyEntity.getId());
-		MovieEntity movieEntity = viewModel.getDetails();
-		assertNotNull(movieEntity);
-		assertEquals(dummyEntity.getId(), movieEntity.getId());
-		assertEquals(dummyEntity.getTitle(), movieEntity.getTitle());
-		assertEquals(dummyEntity.getDescription(), movieEntity.getDescription());
-		assertEquals(dummyEntity.getReleaseDate(), movieEntity.getReleaseDate());
-		assertEquals(dummyEntity.getRuntime(), movieEntity.getRuntime());
-		assertEquals(dummyEntity.getOriginalLanguage(), movieEntity.getOriginalLanguage());
-		assertEquals(dummyEntity.getPoster(), movieEntity.getPoster());
+		MutableLiveData<MovieEntity> movieEntity = new MutableLiveData<>();
+		movieEntity.setValue(dummyMovie);
+
+		when(movieRepository.getMovieById(movieId)).thenReturn(movieEntity);
+
+		Observer<MovieEntity> observer = mock(Observer.class);
+		viewModel.getDetails().observeForever(observer);
+		verify(observer).onChanged(dummyMovie);
 	}
 }

@@ -10,4 +10,8 @@
         <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
+    <style name="ToolBarWithNavigationBack">
+        <item name="navigationIcon">@drawable/ic_arrow_back_black</item>
+    </style>
+
 </resources>

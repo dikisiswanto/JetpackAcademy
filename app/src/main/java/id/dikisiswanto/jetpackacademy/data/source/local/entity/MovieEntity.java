@@ -1,23 +1,23 @@
-package id.dikisiswanto.jetpackacademy.data;
+package id.dikisiswanto.jetpackacademy.data.source.local.entity;
 
 public class MovieEntity {
 	private String id;
 	private String title;
 	private String releaseDate;
 	private String description;
-	private String runtime;
+	private String voteAverage;
 	private String originalLanguage;
 	private String poster;
 
 	public MovieEntity() {
 	}
 
-	public MovieEntity(String id, String title, String releaseDate, String description, String runtime, String originalLanguage, String poster) {
+	public MovieEntity(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster) {
 		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
 		this.description = description;
-		this.runtime = runtime;
+		this.voteAverage = voteAverage;
 		this.originalLanguage = originalLanguage;
 		this.poster = poster;
 	}
@@ -54,12 +54,12 @@ public class MovieEntity {
 		this.description = description;
 	}
 
-	public String getRuntime() {
-		return runtime;
+	public String getVoteAverage() {
+		return voteAverage;
 	}
 
-	public void setRuntime(String runtime) {
-		this.runtime = runtime;
+	public void setVoteAverage(String voteAverage) {
+		this.voteAverage = voteAverage;
 	}
 
 	public String getOriginalLanguage() {
