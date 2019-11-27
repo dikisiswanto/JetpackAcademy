@@ -3,6 +3,7 @@ package id.dikisiswanto.jetpackacademy.ui.home;
 import android.content.Intent;
 
 import androidx.annotation.UiThread;
+import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matchers;
@@ -11,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import id.dikisiswanto.jetpackacademy.R;
+import id.dikisiswanto.jetpackacademy.utils.EspressoIdlingResource;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -33,6 +35,7 @@ public class HomeActivityTest {
 	@Before
 	public void setUp() {
 		activity = activityTestRule.getActivity();
+		IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
 		activityTestRule.launchActivity(new Intent());
 		assertThat(activityTestRule, notNullValue());
 	}
