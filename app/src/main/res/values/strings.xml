@@ -2,6 +2,7 @@
     <string name="app_name">Jetpack Academy</string>
     <string name="release_date_label">Release Date</string>
     <string name="overview_label">Overview</string>
+    <string name="todo">TODO</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

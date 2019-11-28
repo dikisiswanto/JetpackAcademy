@@ -16,7 +16,7 @@ import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ON
 
 public class HomeActivity extends AppCompatActivity {
 
-	ViewPagerAdapter adapter;
+	private ViewPagerAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
