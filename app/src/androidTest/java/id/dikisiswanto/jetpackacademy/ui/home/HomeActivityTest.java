@@ -68,6 +68,6 @@ public class HomeActivityTest {
 				.check(matches(isDisplayed()));
 
 		// Kemudian bandingkan judul tab
-		assertThat(activity.getAdapter().getPageTitle(1), Matchers.<CharSequence>equalTo("TV Shows"));
+		assertThat(activity.getAdapter().getPageTitle(1), Matchers.equalTo("TV Shows"));
 	}
 }
