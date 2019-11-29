@@ -108,8 +108,10 @@ public class DetailActivity extends AppCompatActivity {
 		MenuItem menuItem = menu.findItem(R.id.favorite_button);
 		if (status) {
 			menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white));
+			menuItem.setTitle(R.string.remove_from_favorite);
 		} else {
 			menuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white));
+			menuItem.setTitle(R.string.add_to_favorite);
 		}
 	}
 
@@ -181,10 +183,14 @@ public class DetailActivity extends AppCompatActivity {
 		voteAvg.setText(entity.getVoteAverage());
 		Glide.with(getApplicationContext())
 				.load(IMAGE_URL + entity.getPoster())
+				.placeholder(R.drawable.ic_loading)
+				.error(R.drawable.ic_error)
 				.into(poster);
 		Glide.with(getApplicationContext())
 				.load(IMAGE_URL + entity.getPoster())
 				.apply(new RequestOptions())
+				.placeholder(R.drawable.ic_loading)
+				.error(R.drawable.ic_error)
 				.into(backdrop);
 	}
 }

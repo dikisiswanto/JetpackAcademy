@@ -11,7 +11,7 @@
     </style>
 
     <style name="ToolBarWithNavigationBack">
-        <item name="navigationIcon">@drawable/ic_arrow_back_black</item>
+        <item name="navigationIcon">@drawable/ic_arrow_back_white</item>
     </style>
 
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">

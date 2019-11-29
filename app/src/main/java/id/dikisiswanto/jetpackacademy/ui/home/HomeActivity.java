@@ -45,7 +45,9 @@ public class HomeActivity extends AppCompatActivity {
 		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
 		navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-		navigation.setSelectedItemId(R.id.nav_bottom_1);
+		if (savedInstanceState == null) {
+			navigation.setSelectedItemId(R.id.nav_bottom_1);
+		}
 	}
 
 	private void loadFragment(Fragment fragment) {

@@ -13,6 +13,9 @@
     <string name="favorite_movie">Favorite Movies</string>
     <string name="favorite_tv_show">Favorite TV Shows</string>
     <string name="error_message">Something went wrong!</string>
+    <string name="mark_as_favorited">Add to favorite successfully</string>
+    <string name="delete_from_favorite">Delete from favorite successfully</string>
+    <string name="remove_from_favorite">Remove from favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
