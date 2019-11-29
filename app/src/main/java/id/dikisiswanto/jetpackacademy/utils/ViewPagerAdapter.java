@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.home;
+package id.dikisiswanto.jetpackacademy.utils;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

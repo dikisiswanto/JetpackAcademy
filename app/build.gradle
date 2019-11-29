@@ -41,6 +41,8 @@ dependencies {
     implementation "androidx.legacy:legacy-support-v4:$androidXLegacySupport"
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
 
     // Dependencies for Glide
     implementation("com.github.bumptech.glide:glide:$glideVersion") {
@@ -52,6 +54,13 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:$circleImgVersion") {
         exclude group: "androidx"
     }
+
+    // dependencies for ButterKnife
+    implementation("com.jakewharton:butterknife:$butterknifeVersion") {
+        exclude group: "androidx"
+    }
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
     testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"

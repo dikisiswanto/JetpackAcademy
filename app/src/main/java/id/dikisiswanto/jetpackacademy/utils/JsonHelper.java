@@ -13,6 +13,9 @@ import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.data.source.remote.response.MovieResponse;
 
+import static id.dikisiswanto.jetpackacademy.utils.Constant.MOVIE_TYPE;
+import static id.dikisiswanto.jetpackacademy.utils.Constant.TV_SHOW_TYPE;
+
 public class JsonHelper {
 	private Application application;
 
@@ -50,7 +53,7 @@ public class JsonHelper {
 				String originalLanguage = movie.getString("original_language");
 				String poster = movie.getString("poster_path");
 
-				MovieResponse movieResponse = new MovieResponse(id, title, releaseDate, description, voteAverage, originalLanguage, poster);
+				MovieResponse movieResponse = new MovieResponse(id, title, releaseDate, description, voteAverage, originalLanguage, poster, MOVIE_TYPE);
 				list.add(movieResponse);
 			}
 		} catch (JSONException e) {
@@ -76,7 +79,7 @@ public class JsonHelper {
 				String originalLanguage = tvShow.getString("original_language");
 				String poster = tvShow.getString("poster_path");
 
-				MovieResponse tvShowResponse = new MovieResponse(id, title, releaseDate, description, voteAverage, originalLanguage, poster);
+				MovieResponse tvShowResponse = new MovieResponse(id, title, releaseDate, description, voteAverage, originalLanguage, poster, TV_SHOW_TYPE);
 				list.add(tvShowResponse);
 			}
 		} catch (JSONException e) {

@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.movie;
+package id.dikisiswanto.jetpackacademy.ui.favorite.movie;
 
 
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,19 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
+import id.dikisiswanto.jetpackacademy.ui.movie.MovieAdapter;
 import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MovieFragment extends Fragment {
+public class FavoriteMovieFragment extends Fragment {
 
 	@BindView(R.id.rv_movie)
 	RecyclerView rvMovie;
 	@BindView(R.id.progress)
 	ProgressBar progressBar;
 
-	public MovieFragment() {
+	public FavoriteMovieFragment() {
 		// Required empty public constructor
 	}
 
@@ -40,7 +40,7 @@ public class MovieFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_movie, container, false);
+		return inflater.inflate(R.layout.fragment_favorite_movie, container, false);
 	}
 
 	@Override
@@ -53,27 +53,17 @@ public class MovieFragment extends Fragment {
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
-			MovieViewModel viewModel = obtainViewModel(getActivity());
+			FavoriteMovieViewModel viewModel = obtainViewModel(getActivity());
 			MovieAdapter adapter = new MovieAdapter(getActivity());
 
 			progressBar.setVisibility(View.VISIBLE);
 
 			viewModel.setType(getString(R.string.title_tab1));
-			viewModel.movies.observe(this, movies -> {
-				if (movies != null) {
-					switch (movies.status) {
-						case LOADING:
-							progressBar.setVisibility(View.VISIBLE);
-							break;
-						case SUCCESS:
-							progressBar.setVisibility(View.GONE);
-							adapter.setMovies(movies.data);
-							adapter.notifyDataSetChanged();
-							break;
-						case ERROR:
-							progressBar.setVisibility(View.GONE);
-							Toast.makeText(getContext(), getString(R.string.error_message), Toast.LENGTH_SHORT).show();
-					}
+			viewModel.favoriteMovies.observe(this, movies -> {
+				if (movies.data != null) {
+					progressBar.setVisibility(View.GONE);
+					adapter.setMovies(movies.data);
+					adapter.notifyDataSetChanged();
 				}
 			});
 
@@ -83,10 +73,9 @@ public class MovieFragment extends Fragment {
 		}
 	}
 
-	@NonNull
-	private static MovieViewModel obtainViewModel(FragmentActivity activity) {
+	private FavoriteMovieViewModel obtainViewModel(FragmentActivity activity) {
 		// Use a Factory to inject dependencies into the ViewModel
 		ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-		return ViewModelProviders.of(activity, factory).get(MovieViewModel.class);
+		return ViewModelProviders.of(activity, factory).get(FavoriteMovieViewModel.class);
 	}
 }

@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.di.Injection;
 import id.dikisiswanto.jetpackacademy.ui.detail.DetailViewModel;
+import id.dikisiswanto.jetpackacademy.ui.favorite.movie.FavoriteMovieViewModel;
+import id.dikisiswanto.jetpackacademy.ui.favorite.tv.FavoriteTvShowViewModel;
 import id.dikisiswanto.jetpackacademy.ui.movie.MovieViewModel;
 import id.dikisiswanto.jetpackacademy.ui.tv.TvShowViewModel;
 
@@ -45,6 +47,12 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 		} else if (modelClass.isAssignableFrom(DetailViewModel.class)) {
 			//noinspection unchecked
 			return (T) new DetailViewModel(movieRepository);
+		} else if (modelClass.isAssignableFrom(FavoriteMovieViewModel.class)) {
+			//noinspection unchecked
+			return (T) new FavoriteMovieViewModel(movieRepository);
+		} else if (modelClass.isAssignableFrom(FavoriteTvShowViewModel.class)) {
+			//noinspection unchecked
+			return (T) new FavoriteTvShowViewModel(movieRepository);
 		}
 
 		throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

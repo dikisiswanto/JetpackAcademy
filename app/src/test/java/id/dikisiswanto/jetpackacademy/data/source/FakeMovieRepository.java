@@ -31,7 +31,7 @@ public class FakeMovieRepository implements MovieDataSource {
 	}
 
 	@Override
-	public LiveData<List<MovieEntity>> getAllMovies() {
+	public MutableLiveData<List<MovieEntity>> getAllMovies() {
 		MutableLiveData<List<MovieEntity>> movieResults = new MutableLiveData<>();
 
 		remoteRepository.getAllMovies(new RemoteRepository.LoadMoviesCallback() {

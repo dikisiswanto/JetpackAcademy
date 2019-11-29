@@ -4,43 +4,53 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
+import id.dikisiswanto.jetpackacademy.ui.favorite.FavoriteFragment;
 import id.dikisiswanto.jetpackacademy.ui.movie.MovieFragment;
 import id.dikisiswanto.jetpackacademy.ui.tv.TvShowFragment;
 
-import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
-
 public class HomeActivity extends AppCompatActivity {
 
-	private ViewPagerAdapter adapter;
+	@BindView(R.id.toolbar)
+	Toolbar toolbar;
+	@BindView(R.id.navigation)
+	BottomNavigationView navigation;
+	private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = menuItem -> {
+		Fragment fragment;
+		switch (menuItem.getItemId()) {
+			case R.id.nav_bottom_2:
+				fragment = new TvShowFragment();
+				break;
+			case R.id.nav_bottom_3:
+				fragment = new FavoriteFragment();
+				break;
+			default:
+				fragment = new MovieFragment();
+		}
+		loadFragment(fragment);
+		return true;
+	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
-		Toolbar toolbar = findViewById(R.id.toolbar);
+		ButterKnife.bind(this);
 		setSupportActionBar(toolbar);
-
-		ViewPager viewPager = findViewById(R.id.viewpager);
-		setupViewPager(viewPager);
-
-		TabLayout tabLayout = findViewById(R.id.tabs);
-		tabLayout.setupWithViewPager(viewPager);
+		navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+		navigation.setSelectedItemId(R.id.nav_bottom_1);
 	}
 
-	private void setupViewPager(ViewPager viewPager) {
-		adapter = new ViewPagerAdapter(getSupportFragmentManager(), BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-		adapter.addFragment(new MovieFragment(), "Movies");
-		adapter.addFragment(new TvShowFragment(), "TV Shows");
-		viewPager.setAdapter(adapter);
-	}
-
-	public ViewPagerAdapter getAdapter() {
-		return adapter;
+	private void loadFragment(Fragment fragment) {
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		transaction.replace(R.id.frame_container, fragment);
+		transaction.commit();
 	}
 }

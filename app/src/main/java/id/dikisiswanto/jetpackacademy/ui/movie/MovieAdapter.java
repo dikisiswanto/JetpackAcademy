@@ -18,11 +18,14 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.ui.detail.DetailActivity;
 
 import static id.dikisiswanto.jetpackacademy.utils.Constant.IMAGE_URL;
+import static id.dikisiswanto.jetpackacademy.utils.Constant.MOVIE_TYPE;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -55,18 +58,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
-		final TextView title;
-		final ImageView poster;
+		@BindView(R.id.title)
+		TextView title;
+		@BindView(R.id.poster)
+		ImageView poster;
 
 		ViewHolder(@NonNull View itemView) {
 			super(itemView);
-			title = itemView.findViewById(R.id.title);
-			poster = itemView.findViewById(R.id.poster);
+			ButterKnife.bind(this, itemView);
 			itemView.setOnClickListener(view -> {
 				Intent details = new Intent(view.getContext(), DetailActivity.class);
 				Bundle extras = new Bundle();
 				extras.putString(DetailActivity.ENTITY_ID, movies.get(getAdapterPosition()).getId());
-				extras.putInt(DetailActivity.ENTITY_TYPE, 1);
+				extras.putInt(DetailActivity.ENTITY_TYPE, MOVIE_TYPE);
 				details.putExtras(extras);
 				view.getContext().startActivity(details);
 			});

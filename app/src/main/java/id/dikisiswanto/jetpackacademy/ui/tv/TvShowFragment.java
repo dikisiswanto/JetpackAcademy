@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
@@ -22,8 +25,10 @@ import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
  * A simple {@link Fragment} subclass.
  */
 public class TvShowFragment extends Fragment {
-	private RecyclerView rvTvShow;
-	private ProgressBar progressBar;
+	@BindView(R.id.rv_tvshow)
+	RecyclerView rvTvShow;
+	@BindView(R.id.progress)
+	ProgressBar progressBar;
 
 	public TvShowFragment() {
 		// Required empty public constructor
@@ -40,8 +45,7 @@ public class TvShowFragment extends Fragment {
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		rvTvShow = view.findViewById(R.id.rv_tvshow);
-		progressBar = view.findViewById(R.id.progress);
+		ButterKnife.bind(this, view);
 	}
 
 	@Override
@@ -53,10 +57,23 @@ public class TvShowFragment extends Fragment {
 
 			progressBar.setVisibility(View.VISIBLE);
 
-			viewModel.getTvShows().observe(this, tvshows -> {
-				progressBar.setVisibility(View.GONE);
-				adapter.setTvShows(tvshows);
-				adapter.notifyDataSetChanged();
+			viewModel.setType(getString(R.string.title_tab2));
+			viewModel.tvShows.observe(this, tvShows -> {
+				if (tvShows != null) {
+					switch (tvShows.status) {
+						case LOADING:
+							progressBar.setVisibility(View.VISIBLE);
+							break;
+						case SUCCESS:
+							progressBar.setVisibility(View.GONE);
+							adapter.setTvShows(tvShows.data);
+							adapter.notifyDataSetChanged();
+							break;
+						case ERROR:
+							progressBar.setVisibility(View.GONE);
+							Toast.makeText(getContext(), getString(R.string.error_message), Toast.LENGTH_SHORT).show();
+					}
+				}
 			});
 
 			rvTvShow.setLayoutManager(new GridLayoutManager(getContext(), 3));

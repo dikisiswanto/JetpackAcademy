@@ -5,13 +5,20 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
+import id.dikisiswanto.jetpackacademy.vo.Resource;
 
 public interface MovieDataSource {
-	LiveData<List<MovieEntity>> getAllMovies();
+	LiveData<Resource<List<MovieEntity>>> getAllMovies();
 
-	LiveData<MovieEntity> getMovieById(String movieId);
+	LiveData<Resource<MovieEntity>> getMovieById(String movieId);
 
-	LiveData<List<MovieEntity>> getAllTvShows();
+	LiveData<Resource<List<MovieEntity>>> getAllTvShows();
 
-	LiveData<MovieEntity> getTvShowById(String tvShowId);
+	LiveData<Resource<MovieEntity>> getTvShowById(String tvShowId);
+
+	LiveData<Resource<List<MovieEntity>>> getFavoriteMovies();
+
+	LiveData<Resource<List<MovieEntity>>> getFavoriteTvShows();
+
+	void setFavoriteStatus(MovieEntity movieEntity);
 }

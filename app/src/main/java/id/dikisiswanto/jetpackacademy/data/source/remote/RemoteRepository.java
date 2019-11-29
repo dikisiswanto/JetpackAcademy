@@ -2,6 +2,9 @@ package id.dikisiswanto.jetpackacademy.data.source.remote;
 
 import android.os.Handler;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.data.source.remote.response.MovieResponse;
@@ -24,33 +27,33 @@ public class RemoteRepository {
 		return INSTANCE;
 	}
 
-	public void getAllMovies(final LoadMoviesCallback callback) {
+	public LiveData<ApiResponse<List<MovieResponse>>> getAllMovies() {
 		EspressoIdlingResource.increment();
+		MutableLiveData<ApiResponse<List<MovieResponse>>> movieResponses = new MutableLiveData<>();
+
 		Handler handler = new Handler();
 		handler.postDelayed(() -> {
-			callback.onAllMoviesReceived(jsonHelper.loadMovies());
-			EspressoIdlingResource.decrement();
+			movieResponses.setValue(ApiResponse.success(jsonHelper.loadMovies()));
+			if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow()) {
+				EspressoIdlingResource.decrement();
+			}
 		}, SERVICE_LATENCY_IN_MILLIS);
+
+		return movieResponses;
 	}
 
-	public void getAllTvShows(LoadTvShowCallback callback) {
+	public LiveData<ApiResponse<List<MovieResponse>>> getAllTvShows() {
 		EspressoIdlingResource.increment();
+		MutableLiveData<ApiResponse<List<MovieResponse>>> tvShowResponses = new MutableLiveData<>();
+
 		Handler handler = new Handler();
 		handler.postDelayed(() -> {
-			callback.onAllTvShowsReceived(jsonHelper.loadTvShows());
-			EspressoIdlingResource.decrement();
+			tvShowResponses.setValue(ApiResponse.success(jsonHelper.loadTvShows()));
+			if (!EspressoIdlingResource.getEspressoIdlingResource().isIdleNow()) {
+				EspressoIdlingResource.decrement();
+			}
 		}, SERVICE_LATENCY_IN_MILLIS);
-	}
 
-	public interface LoadMoviesCallback {
-		void onAllMoviesReceived(List<MovieResponse> movieResponses);
-
-		void onDataNotAvailable();
-	}
-
-	public interface LoadTvShowCallback {
-		void onAllTvShowsReceived(List<MovieResponse> tvShowResponses);
-
-		void onDataNotAvailable();
+		return tvShowResponses;
 	}
 }
