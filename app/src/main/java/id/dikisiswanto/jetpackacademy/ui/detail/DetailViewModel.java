@@ -1,46 +1,53 @@
 package id.dikisiswanto.jetpackacademy.ui.detail;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
+import id.dikisiswanto.jetpackacademy.vo.Resource;
+
+import static id.dikisiswanto.jetpackacademy.utils.Constant.MOVIE_TYPE;
+import static id.dikisiswanto.jetpackacademy.utils.Constant.TV_SHOW_TYPE;
 
 public class DetailViewModel extends ViewModel {
 	private MovieRepository movieRepository;
-	private LiveData<MovieEntity> entity = null;
-	private String id;
+	private MutableLiveData<String> id = new MutableLiveData<>();
+	private LiveData<Resource<MovieEntity>> result;
 	private int type;
+	LiveData<Resource<MovieEntity>> detail = Transformations.switchMap(id, data -> {
+		switch (type) {
+			case MOVIE_TYPE:
+				result = movieRepository.getMovieById(getId());
+				break;
+			case TV_SHOW_TYPE:
+				result = movieRepository.getTvShowById(getId());
+		}
+		return result;
+	});
 
 	public DetailViewModel(MovieRepository movieRepository) {
 		this.movieRepository = movieRepository;
 	}
 
-	LiveData<MovieEntity> getDetails() {
-		switch (type) {
-			case 1:
-				entity = movieRepository.getMovieById(id);
-				break;
-			case 2:
-				entity = movieRepository.getTvShowById(id);
-				break;
-		}
-		return entity;
-	}
-
 	public String getId() {
-		return id;
+		return this.id.getValue();
 	}
 
 	public void setId(String id) {
-		this.id = id;
-	}
-
-	public int getType() {
-		return type;
+		this.id.setValue(id);
 	}
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public void setFavorite() {
+		if (detail.getValue() != null) {
+			MovieEntity entity = detail.getValue().data;
+			movieRepository.setFavoriteStatus(entity);
+		}
 	}
 }

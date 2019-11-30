@@ -4,6 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class MovieResponse implements Parcelable {
+	public static final Creator<MovieResponse> CREATOR = new Creator<MovieResponse>() {
+		@Override
+		public MovieResponse createFromParcel(Parcel source) {
+			return new MovieResponse(source);
+		}
+
+		@Override
+		public MovieResponse[] newArray(int size) {
+			return new MovieResponse[size];
+		}
+	};
 	private String id;
 	private String title;
 	private String releaseDate;
@@ -11,11 +22,12 @@ public class MovieResponse implements Parcelable {
 	private String voteAverage;
 	private String originalLanguage;
 	private String poster;
+	private int type;
 
 	public MovieResponse() {
 	}
 
-	public MovieResponse(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster) {
+	public MovieResponse(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster, int type) {
 		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
@@ -23,6 +35,18 @@ public class MovieResponse implements Parcelable {
 		this.voteAverage = voteAverage;
 		this.originalLanguage = originalLanguage;
 		this.poster = poster;
+		this.type = type;
+	}
+
+	protected MovieResponse(Parcel in) {
+		this.id = in.readString();
+		this.title = in.readString();
+		this.releaseDate = in.readString();
+		this.description = in.readString();
+		this.voteAverage = in.readString();
+		this.originalLanguage = in.readString();
+		this.poster = in.readString();
+		this.type = in.readInt();
 	}
 
 	public String getId() {
@@ -86,6 +110,14 @@ public class MovieResponse implements Parcelable {
 		return 0;
 	}
 
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(this.id);
@@ -95,27 +127,6 @@ public class MovieResponse implements Parcelable {
 		dest.writeString(this.voteAverage);
 		dest.writeString(this.originalLanguage);
 		dest.writeString(this.poster);
+		dest.writeInt(this.type);
 	}
-
-	protected MovieResponse(Parcel in) {
-		this.id = in.readString();
-		this.title = in.readString();
-		this.releaseDate = in.readString();
-		this.description = in.readString();
-		this.voteAverage = in.readString();
-		this.originalLanguage = in.readString();
-		this.poster = in.readString();
-	}
-
-	public static final Parcelable.Creator<MovieResponse> CREATOR = new Parcelable.Creator<MovieResponse>() {
-		@Override
-		public MovieResponse createFromParcel(Parcel source) {
-			return new MovieResponse(source);
-		}
-
-		@Override
-		public MovieResponse[] newArray(int size) {
-			return new MovieResponse[size];
-		}
-	};
 }

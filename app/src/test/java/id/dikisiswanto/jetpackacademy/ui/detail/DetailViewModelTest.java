@@ -11,7 +11,9 @@ import org.junit.Test;
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
+import id.dikisiswanto.jetpackacademy.vo.Resource;
 
+import static id.dikisiswanto.jetpackacademy.utils.Constant.MOVIE_TYPE;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -22,9 +24,8 @@ public class DetailViewModelTest {
 
 	private DetailViewModel viewModel;
 	private MovieRepository movieRepository = mock(MovieRepository.class);
-	private MovieEntity dummyMovie = FakeDataDummy.getMovies().get(0);
-	private String movieId = dummyMovie.getId();
-	private static final int MOVIE_TYPE = 1;
+	private Resource<MovieEntity> dummyMovie = Resource.success(FakeDataDummy.getMovies().get(0));
+	private String movieId = dummyMovie.data.getId();
 
 	@Before
 	public void setUp() {
@@ -35,13 +36,13 @@ public class DetailViewModelTest {
 
 	@Test
 	public void getDetails() {
-		MutableLiveData<MovieEntity> movieEntity = new MutableLiveData<>();
+		MutableLiveData<Resource<MovieEntity>> movieEntity = new MutableLiveData<>();
 		movieEntity.setValue(dummyMovie);
 
 		when(movieRepository.getMovieById(movieId)).thenReturn(movieEntity);
 
-		Observer<MovieEntity> observer = mock(Observer.class);
-		viewModel.getDetails().observeForever(observer);
+		Observer<Resource<MovieEntity>> observer = mock(Observer.class);
+		viewModel.detail.observeForever(observer);
 		verify(observer).onChanged(dummyMovie);
 	}
 }

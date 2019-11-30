@@ -17,18 +17,18 @@ import id.dikisiswanto.jetpackacademy.R;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.utils.EspressoIdlingResource;
 import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
+import id.dikisiswanto.jetpackacademy.vo.Resource;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.junit.Assert.assertNotNull;
 
 public class DetailActivityTest {
 
-	private MovieEntity dummyEntity = FakeDataDummy.getMovies().get(0);
-	private static final int MOVIE_TYPE = 1;
-
+	private Resource<MovieEntity> dummyEntity = Resource.success(FakeDataDummy.getMovies().get(0));
 	@Rule
 	public ActivityTestRule<DetailActivity> activityTestRule = new ActivityTestRule<DetailActivity>(DetailActivity.class) {
 		@Override
@@ -36,12 +36,13 @@ public class DetailActivityTest {
 			Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 			Intent result = new Intent(targetContext, DetailActivity.class);
 			Bundle bundle = new Bundle();
-			bundle.putString(DetailActivity.ENTITY_ID, dummyEntity.getId());
-			bundle.putInt(DetailActivity.ENTITY_TYPE, MOVIE_TYPE);
+			bundle.putString(DetailActivity.ENTITY_ID, dummyEntity.data.getId());
+			bundle.putInt(DetailActivity.ENTITY_TYPE, dummyEntity.data.getType());
 			result.putExtras(bundle);
 			return result;
 		}
 	};
+	private MovieEntity actualEntity = dummyEntity.data;
 
 	@Before
 	public void setUp() {
@@ -56,16 +57,18 @@ public class DetailActivityTest {
 
 	@Test
 	public void loadDetails() {
+
+		assertNotNull(actualEntity);
 		onView(withId(R.id.title)).check(matches(isDisplayed()));
-		onView(withId(R.id.title)).check(matches(withText(dummyEntity.getTitle())));
+		onView(withId(R.id.title)).check(matches(withText(actualEntity.getTitle())));
 		onView(withId(R.id.overview)).check(matches(isDisplayed()));
-		onView(withId(R.id.overview)).check(matches(withText(dummyEntity.getDescription())));
+		onView(withId(R.id.overview)).check(matches(withText(actualEntity.getDescription())));
 		onView(withId(R.id.release_date)).check(matches(isDisplayed()));
-		onView(withId(R.id.release_date)).check(matches(withText(dummyEntity.getReleaseDate())));
+		onView(withId(R.id.release_date)).check(matches(withText(actualEntity.getReleaseDate())));
 		onView(withId(R.id.vote_average)).check(matches(isDisplayed()));
-		onView(withId(R.id.vote_average)).check(matches(withText(dummyEntity.getVoteAverage())));
+		onView(withId(R.id.vote_average)).check(matches(withText(actualEntity.getVoteAverage())));
 		onView(withId(R.id.original_language)).check(matches(isDisplayed()));
-		onView(withId(R.id.original_language)).check(matches(withText(dummyEntity.getOriginalLanguage())));
+		onView(withId(R.id.original_language)).check(matches(withText(actualEntity.getOriginalLanguage())));
 		onView(withId(R.id.poster)).check(matches(isDisplayed()));
 		onView(withId(R.id.backdrop)).check(matches(isDisplayed()));
 	}

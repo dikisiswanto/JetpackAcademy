@@ -3,6 +3,19 @@
     <string name="release_date_label">Release Date</string>
     <string name="overview_label">Overview</string>
     <string name="todo">TODO</string>
+    <string name="title_tab1">Movies</string>
+    <string name="title_tab2">Tv Shows</string>
+    <string name="title_tab3">Favorites</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="favorite_movie">Favorite Movies</string>
+    <string name="favorite_tv_show">Favorite TV Shows</string>
+    <string name="error_message">Something went wrong!</string>
+    <string name="mark_as_favorited">Add to favorite successfully</string>
+    <string name="delete_from_favorite">Delete from favorite successfully</string>
+    <string name="remove_from_favorite">Remove from favorite</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

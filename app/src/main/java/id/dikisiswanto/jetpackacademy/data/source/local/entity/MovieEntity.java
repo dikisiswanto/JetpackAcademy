@@ -1,18 +1,33 @@
 package id.dikisiswanto.jetpackacademy.data.source.local.entity;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "movie_entities")
 public class MovieEntity {
+	@PrimaryKey
+	@NonNull
 	private String id;
 	private String title;
+	@ColumnInfo(name = "release_date")
 	private String releaseDate;
 	private String description;
+	@ColumnInfo(name = "vote_average")
 	private String voteAverage;
+	@ColumnInfo(name = "original_language")
 	private String originalLanguage;
 	private String poster;
+	private int type;
+	private boolean status = false;
 
+	@Ignore
 	public MovieEntity() {
 	}
 
-	public MovieEntity(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster) {
+	public MovieEntity(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster, int type) {
 		this.id = id;
 		this.title = title;
 		this.releaseDate = releaseDate;
@@ -20,6 +35,7 @@ public class MovieEntity {
 		this.voteAverage = voteAverage;
 		this.originalLanguage = originalLanguage;
 		this.poster = poster;
+		this.type = type;
 	}
 
 	public String getId() {
@@ -76,5 +92,21 @@ public class MovieEntity {
 
 	public void setPoster(String poster) {
 		this.poster = poster;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 }

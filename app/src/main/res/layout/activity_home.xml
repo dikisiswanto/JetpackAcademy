@@ -16,21 +16,24 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/primaryColor"
-            app:titleTextColor="@color/primaryTextColor"
-            app:layout_scrollFlags="scroll|enterAlways" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            app:tabTextColor="@color/primaryTextColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            app:tabGravity="fill" />
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/primaryTextColor" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <FrameLayout
+        android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/primaryColor"
+            android:elevation="@dimen/activity_horizontal_margin"
+            android:theme="@style/BottomNavigationTheme"
+            app:menu="@menu/bottom_navigation_menu" />
+    </FrameLayout>
 </LinearLayout>
