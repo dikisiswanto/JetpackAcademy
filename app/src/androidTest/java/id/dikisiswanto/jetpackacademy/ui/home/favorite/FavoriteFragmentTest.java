@@ -1,10 +1,12 @@
 package id.dikisiswanto.jetpackacademy.ui.home.favorite;
 
+import android.content.Intent;
+
 import androidx.annotation.UiThread;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
 
-import org.hamcrest.Matchers;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,20 +25,26 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.junit.Assert.assertThat;
 
 public class FavoriteFragmentTest {
 	@Rule
 	public ActivityTestRule<HomeActivity> activityTestRule = new ActivityTestRule<>(HomeActivity.class);
 	private HomeActivity activity;
-	private FavoriteFragment fragment = new FavoriteFragment();
+	private FavoriteFragment fragment;
 
 	@Before
 	public void setUp() {
 		IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
 		activity = activityTestRule.getActivity();
-//		activityTestRule.launchActivity(new Intent());
+		activityTestRule.launchActivity(new Intent());
+		fragment = new FavoriteFragment();
 		onView(withId(R.id.nav_bottom_3)).perform(click());
+	}
+
+	@After
+	public void tearDown() {
+		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+		activityTestRule.finishActivity();
 	}
 
 	@Test
@@ -61,13 +69,8 @@ public class FavoriteFragmentTest {
 	@Test
 	@UiThread
 	public void checkTabSwitch() {
-		// Pindah ke tab Tv Shows
-		onView(allOf(withText(String.valueOf(withId(R.string.favorite_tv_show))), isDescendantOfA(withId(R.id.tabs))))
+		onView(allOf(withText("Favorite TV Shows"), isDescendantOfA(withId(R.id.tabs))))
 				.perform(click())
 				.check(matches(isDisplayed()));
-
-		// Kemudian bandingkan judul tab
-		assertThat(fragment.getAdapter().getPageTitle(1), Matchers.equalTo(withId(R.string.favorite_tv_show)));
 	}
-
 }
