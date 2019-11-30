@@ -26,9 +26,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class DetailActivityTest {
 
-	private MovieEntity dummyEntity = FakeDataDummy.getMovies().get(0);
 	private static final int MOVIE_TYPE = 1;
-
+	private MovieEntity dummyEntity = FakeDataDummy.getMovies().get(0);
 	@Rule
 	public ActivityTestRule<DetailActivity> activityTestRule = new ActivityTestRule<DetailActivity>(DetailActivity.class) {
 		@Override

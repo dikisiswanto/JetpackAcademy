@@ -17,11 +17,6 @@ public class DetailViewModel extends ViewModel {
 	private MutableLiveData<String> id = new MutableLiveData<>();
 	private LiveData<Resource<MovieEntity>> result;
 	private int type;
-
-	public DetailViewModel(MovieRepository movieRepository) {
-		this.movieRepository = movieRepository;
-	}
-
 	LiveData<Resource<MovieEntity>> detail = Transformations.switchMap(id, data -> {
 		switch (type) {
 			case MOVIE_TYPE:
@@ -32,6 +27,10 @@ public class DetailViewModel extends ViewModel {
 		}
 		return result;
 	});
+
+	public DetailViewModel(MovieRepository movieRepository) {
+		this.movieRepository = movieRepository;
+	}
 
 	public String getId() {
 		return this.id.getValue();

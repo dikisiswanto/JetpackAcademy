@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_margin="5dp"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/poster"
@@ -16,11 +16,11 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:lines="1"
         android:ellipsize="end"
-        android:textColor="@color/primaryDarkColor"
         android:gravity="center"
+        android:lines="1"
+        android:padding="5dp"
+        android:textColor="@color/primaryDarkColor"
         android:textSize="12sp" />
 
 </LinearLayout>

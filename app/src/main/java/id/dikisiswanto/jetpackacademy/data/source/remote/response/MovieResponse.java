@@ -4,13 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class MovieResponse implements Parcelable {
-	private String id;
-	private String title;
-	private String releaseDate;
-	private String description;
-	private String voteAverage;
-	private String originalLanguage;
-	private String poster;
 	public static final Creator<MovieResponse> CREATOR = new Creator<MovieResponse>() {
 		@Override
 		public MovieResponse createFromParcel(Parcel source) {
@@ -22,11 +15,39 @@ public class MovieResponse implements Parcelable {
 			return new MovieResponse[size];
 		}
 	};
+	private String id;
+	private String title;
+	private String releaseDate;
+	private String description;
+	private String voteAverage;
+	private String originalLanguage;
+	private String poster;
+	private int type;
 
 	public MovieResponse() {
 	}
 
-	private int type;
+	public MovieResponse(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster, int type) {
+		this.id = id;
+		this.title = title;
+		this.releaseDate = releaseDate;
+		this.description = description;
+		this.voteAverage = voteAverage;
+		this.originalLanguage = originalLanguage;
+		this.poster = poster;
+		this.type = type;
+	}
+
+	protected MovieResponse(Parcel in) {
+		this.id = in.readString();
+		this.title = in.readString();
+		this.releaseDate = in.readString();
+		this.description = in.readString();
+		this.voteAverage = in.readString();
+		this.originalLanguage = in.readString();
+		this.poster = in.readString();
+		this.type = in.readInt();
+	}
 
 	public String getId() {
 		return id;
@@ -82,28 +103,6 @@ public class MovieResponse implements Parcelable {
 
 	public void setPoster(String poster) {
 		this.poster = poster;
-	}
-
-	public MovieResponse(String id, String title, String releaseDate, String description, String voteAverage, String originalLanguage, String poster, int type) {
-		this.id = id;
-		this.title = title;
-		this.releaseDate = releaseDate;
-		this.description = description;
-		this.voteAverage = voteAverage;
-		this.originalLanguage = originalLanguage;
-		this.poster = poster;
-		this.type = type;
-	}
-
-	protected MovieResponse(Parcel in) {
-		this.id = in.readString();
-		this.title = in.readString();
-		this.releaseDate = in.readString();
-		this.description = in.readString();
-		this.voteAverage = in.readString();
-		this.originalLanguage = in.readString();
-		this.poster = in.readString();
-		this.type = in.readInt();
 	}
 
 	@Override

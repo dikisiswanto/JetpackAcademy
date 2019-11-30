@@ -14,13 +14,12 @@ import id.dikisiswanto.jetpackacademy.vo.Resource;
 public class TvShowViewModel extends ViewModel {
 	private MutableLiveData<String> result = new MutableLiveData<>();
 	private MovieRepository movieRepository;
+	LiveData<Resource<List<MovieEntity>>> tvShows = Transformations.switchMap(result, data ->
+			movieRepository.getAllTvShows());
 
 	public TvShowViewModel(MovieRepository movieRepository) {
 		this.movieRepository = movieRepository;
 	}
-
-	LiveData<Resource<List<MovieEntity>>> tvShows = Transformations.switchMap(result, data ->
-			movieRepository.getAllTvShows());
 
 	public void setType(String type) {
 		result.setValue(type);

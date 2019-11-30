@@ -15,13 +15,12 @@ public class MovieViewModel extends ViewModel {
 
 	private MutableLiveData<String> result = new MutableLiveData<>();
 	private MovieRepository movieRepository;
+	LiveData<Resource<List<MovieEntity>>> movies = Transformations.switchMap(result, data ->
+			movieRepository.getAllMovies());
 
 	public MovieViewModel(MovieRepository movieRepository) {
 		this.movieRepository = movieRepository;
 	}
-
-	LiveData<Resource<List<MovieEntity>>> movies = Transformations.switchMap(result, data ->
-			movieRepository.getAllMovies());
 
 	public void setType(String type) {
 		result.setValue(type);

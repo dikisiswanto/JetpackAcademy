@@ -13,6 +13,7 @@ import java.util.List;
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
+import id.dikisiswanto.jetpackacademy.vo.Resource;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -32,14 +33,14 @@ public class TvShowViewModelTest {
 
 	@Test
 	public void getTvShows() {
-		List<MovieEntity> dummyTvShows = FakeDataDummy.getTvShows();
-		MutableLiveData<List<MovieEntity>> tvShows = new MutableLiveData<>();
+		Resource<List<MovieEntity>> dummyTvShows = Resource.success(FakeDataDummy.getTvShows());
+		MutableLiveData<Resource<List<MovieEntity>>> tvShows = new MutableLiveData<>();
 		tvShows.setValue(dummyTvShows);
 
 		when(movieRepository.getAllTvShows()).thenReturn(tvShows);
 
-		Observer<List<MovieEntity>> observer = mock(Observer.class);
-		viewModel.getTvShows().observeForever(observer);
+		Observer<Resource<List<MovieEntity>>> observer = mock(Observer.class);
+		viewModel.tvShows.observeForever(observer);
 		verify(observer).onChanged(dummyTvShows);
 	}
 

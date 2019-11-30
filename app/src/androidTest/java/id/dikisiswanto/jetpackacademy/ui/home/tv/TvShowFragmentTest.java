@@ -36,7 +36,7 @@ public class TvShowFragmentTest {
 	public void tearDown() {
 		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
 	}
-	
+
 	@Test
 	public void loadTvShows() {
 		onView(withId(R.id.rv_tvshow)).check(matches(isDisplayed()));

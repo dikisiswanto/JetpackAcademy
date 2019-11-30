@@ -36,6 +36,12 @@ public class MovieFragment extends Fragment {
 		// Required empty public constructor
 	}
 
+	@NonNull
+	private static MovieViewModel obtainViewModel(FragmentActivity activity) {
+		// Use a Factory to inject dependencies into the ViewModel
+		ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
+		return ViewModelProviders.of(activity, factory).get(MovieViewModel.class);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,12 +88,5 @@ public class MovieFragment extends Fragment {
 			rvMovie.setHasFixedSize(true);
 			rvMovie.setAdapter(adapter);
 		}
-	}
-
-	@NonNull
-	private static MovieViewModel obtainViewModel(FragmentActivity activity) {
-		// Use a Factory to inject dependencies into the ViewModel
-		ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-		return ViewModelProviders.of(activity, factory).get(MovieViewModel.class);
 	}
 }

@@ -7,20 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/primaryColor"
-            app:titleTextColor="@color/primaryTextColor"
-            app:layout_scrollFlags="scroll|enterAlways" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
@@ -36,4 +22,18 @@
             android:theme="@style/BottomNavigationTheme"
             app:menu="@menu/bottom_navigation_menu" />
     </FrameLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primaryColor"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:titleTextColor="@color/primaryTextColor" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 </LinearLayout>
