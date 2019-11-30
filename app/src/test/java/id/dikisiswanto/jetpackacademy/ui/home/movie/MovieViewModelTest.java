@@ -24,6 +24,7 @@ public class MovieViewModelTest {
 	public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
 	private MovieViewModel viewModel;
+	private static final String TYPE = "MOVIE";
 	private MovieRepository movieRepository = mock(MovieRepository.class);
 
 	@Before
@@ -39,6 +40,8 @@ public class MovieViewModelTest {
 
 		when(movieRepository.getAllMovies()).thenReturn(movies);
 		Observer<Resource<List<MovieEntity>>> observer = mock(Observer.class);
+
+		viewModel.setType(TYPE);
 		viewModel.movies.observeForever(observer);
 		verify(observer).onChanged(dummyMovies);
 	}

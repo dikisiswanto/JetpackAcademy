@@ -48,7 +48,7 @@ public class LocalRepository {
 	}
 
 	public void insertMovies(List<MovieEntity> movies) {
-		movieDao.insertMovie(movies);
+		movieDao.insertMovies(movies);
 	}
 
 	public void updateFavoriteStatus(MovieEntity movie) {

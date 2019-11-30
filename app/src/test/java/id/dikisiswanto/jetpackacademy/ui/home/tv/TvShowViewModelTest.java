@@ -23,6 +23,7 @@ public class TvShowViewModelTest {
 	@Rule
 	public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
+	private static final String TYPE = "TV SHOW";
 	private TvShowViewModel viewModel;
 	private MovieRepository movieRepository = mock(MovieRepository.class);
 
@@ -40,6 +41,7 @@ public class TvShowViewModelTest {
 		when(movieRepository.getAllTvShows()).thenReturn(tvShows);
 
 		Observer<Resource<List<MovieEntity>>> observer = mock(Observer.class);
+		viewModel.setType(TYPE);
 		viewModel.tvShows.observeForever(observer);
 		verify(observer).onChanged(dummyTvShows);
 	}

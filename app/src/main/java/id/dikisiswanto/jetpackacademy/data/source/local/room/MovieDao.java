@@ -42,7 +42,7 @@ public interface MovieDao {
 	DataSource.Factory<Integer, MovieEntity> getFavoriteTvShows();
 
 	@Insert(onConflict = OnConflictStrategy.REPLACE)
-	long[] insertMovie(List<MovieEntity> movies);
+	long[] insertMovies(List<MovieEntity> movies);
 
 	@Update
 	int updateMovie(MovieEntity movie);

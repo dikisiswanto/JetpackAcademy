@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
+import id.dikisiswanto.jetpackacademy.data.source.remote.response.MovieResponse;
+
+import static id.dikisiswanto.jetpackacademy.utils.Constant.MOVIE_TYPE;
+import static id.dikisiswanto.jetpackacademy.utils.Constant.TV_SHOW_TYPE;
 
 public class FakeDataDummy {
 	private static final String[][] movieData = {
@@ -25,6 +29,25 @@ public class FakeDataDummy {
 			movie.setVoteAverage(data[4]);
 			movie.setOriginalLanguage(data[5]);
 			movie.setPoster(data[6]);
+			movie.setType(MOVIE_TYPE);
+			movies.add(movie);
+		}
+		return movies;
+	}
+
+	public static List<MovieResponse> getRemoteMovies() {
+		List<MovieResponse> movies = new ArrayList<>();
+		MovieResponse movie;
+		for (String[] data : movieData) {
+			movie = new MovieResponse();
+			movie.setId(data[0]);
+			movie.setTitle(data[1]);
+			movie.setDescription(data[2]);
+			movie.setReleaseDate(data[3]);
+			movie.setVoteAverage(data[4]);
+			movie.setOriginalLanguage(data[5]);
+			movie.setPoster(data[6]);
+			movie.setType(MOVIE_TYPE);
 			movies.add(movie);
 		}
 		return movies;
@@ -42,6 +65,25 @@ public class FakeDataDummy {
 			tvShow.setVoteAverage(data[4]);
 			tvShow.setOriginalLanguage(data[5]);
 			tvShow.setPoster(data[6]);
+			tvShow.setType(TV_SHOW_TYPE);
+			tvShows.add(tvShow);
+		}
+		return tvShows;
+	}
+
+	public static List<MovieResponse> getRemoteTvShows() {
+		List<MovieResponse> tvShows = new ArrayList<>();
+		MovieResponse tvShow;
+		for (String[] data : tvShowData) {
+			tvShow = new MovieResponse();
+			tvShow.setId(data[0]);
+			tvShow.setTitle(data[1]);
+			tvShow.setDescription(data[2]);
+			tvShow.setReleaseDate(data[3]);
+			tvShow.setVoteAverage(data[4]);
+			tvShow.setOriginalLanguage(data[5]);
+			tvShow.setPoster(data[6]);
+			tvShow.setType(TV_SHOW_TYPE);
 			tvShows.add(tvShow);
 		}
 		return tvShows;

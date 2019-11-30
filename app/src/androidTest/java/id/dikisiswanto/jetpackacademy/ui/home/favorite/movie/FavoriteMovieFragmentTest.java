@@ -1,8 +1,7 @@
-package id.dikisiswanto.jetpackacademy.ui.home.movie;
+package id.dikisiswanto.jetpackacademy.ui.home.favorite.movie;
 
 import android.content.Intent;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
 
@@ -11,31 +10,27 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import java.util.List;
-
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.ui.home.HomeActivity;
 import id.dikisiswanto.jetpackacademy.utils.EspressoIdlingResource;
-import id.dikisiswanto.jetpackacademy.utils.FakeDataDummy;
-import id.dikisiswanto.jetpackacademy.utils.RecyclerViewItemCountAssertion;
-import id.dikisiswanto.jetpackacademy.vo.Resource;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.swipeRight;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-public class MovieFragmentTest {
-
+public class FavoriteMovieFragmentTest {
 	@Rule
 	public ActivityTestRule<HomeActivity> activityRule = new ActivityTestRule<>(HomeActivity.class, false, false);
-	private MutableLiveData<Resource<List<MovieEntity>>> movies = new MutableLiveData<>();
 
 	@Before
 	public void setUp() {
 		activityRule.launchActivity(new Intent());
 		IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
+		onView(withId(R.id.nav_bottom_3)).perform(click());
+		onView(withId(R.id.tabs)).perform(swipeRight());
 	}
 
 	@After
@@ -44,10 +39,7 @@ public class MovieFragmentTest {
 	}
 
 	@Test
-	public void loadMovies() {
-		List<MovieEntity> expectedMovies = FakeDataDummy.getMovies();
-		movies.postValue(Resource.success(expectedMovies));
+	public void loadFavoriteMovies() {
 		onView(withId(R.id.rv_movie)).check(matches(isDisplayed()));
-		onView(withId(R.id.rv_movie)).check(new RecyclerViewItemCountAssertion(expectedMovies.size()));
 	}
 }
