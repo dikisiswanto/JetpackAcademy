@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.tv;
+package id.dikisiswanto.jetpackacademy.ui.home;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,18 +25,18 @@ import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.ui.detail.DetailActivity;
 
 import static id.dikisiswanto.jetpackacademy.utils.Constant.IMAGE_URL;
-import static id.dikisiswanto.jetpackacademy.utils.Constant.TV_SHOW_TYPE;
 
-public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+
 	private Activity activity;
-	private List<MovieEntity> tvShows = new ArrayList<>();
+	private List<MovieEntity> movies = new ArrayList<>();
 
-	public TvShowAdapter(Activity activity) {
+	public MovieAdapter(Activity activity) {
 		this.activity = activity;
 	}
 
-	public void setTvShows(List<MovieEntity> tvShows) {
-		this.tvShows = tvShows;
+	public void setMovies(List<MovieEntity> movies) {
+		this.movies = movies;
 	}
 
 	@NonNull
@@ -48,12 +48,12 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		holder.bind(tvShows.get(position));
+		holder.bind(movies.get(position));
 	}
 
 	@Override
 	public int getItemCount() {
-		return tvShows.size();
+		return movies.size();
 	}
 
 	class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,17 +68,17 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
 			itemView.setOnClickListener(view -> {
 				Intent details = new Intent(view.getContext(), DetailActivity.class);
 				Bundle extras = new Bundle();
-				extras.putString(DetailActivity.ENTITY_ID, tvShows.get(getAdapterPosition()).getId());
-				extras.putInt(DetailActivity.ENTITY_TYPE, TV_SHOW_TYPE);
+				extras.putString(DetailActivity.ENTITY_ID, movies.get(getAdapterPosition()).getId());
+				extras.putInt(DetailActivity.ENTITY_TYPE, movies.get(getAdapterPosition()).getType());
 				details.putExtras(extras);
 				view.getContext().startActivity(details);
 			});
 		}
 
-		void bind(MovieEntity tvShow) {
-			title.setText(tvShow.getTitle());
+		void bind(MovieEntity movie) {
+			title.setText(movie.getTitle());
 			Glide.with(itemView.getContext())
-					.load(IMAGE_URL + tvShow.getPoster())
+					.load(IMAGE_URL + movie.getPoster())
 					.apply(new RequestOptions())
 					.placeholder(R.drawable.ic_loading)
 					.error(R.drawable.ic_error)

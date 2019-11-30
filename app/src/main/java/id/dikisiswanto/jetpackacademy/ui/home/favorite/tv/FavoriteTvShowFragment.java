@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.favorite.tv;
+package id.dikisiswanto.jetpackacademy.ui.home.favorite.tv;
 
 
 import android.os.Bundle;
@@ -18,13 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.ui.tv.TvShowAdapter;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.FavoriteAdapter;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.FavoriteFragmentCallback;
 import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteTvShowFragment extends Fragment {
+public class FavoriteTvShowFragment extends Fragment implements FavoriteFragmentCallback {
 
 	@BindView(R.id.rv_tvshow)
 	RecyclerView rvTvShow;
@@ -54,7 +55,7 @@ public class FavoriteTvShowFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
 			FavoriteTvShowViewModel viewModel = obtainViewModel(getActivity());
-			TvShowAdapter adapter = new TvShowAdapter(getActivity());
+			FavoriteAdapter adapter = new FavoriteAdapter(this);
 
 			progressBar.setVisibility(View.VISIBLE);
 
@@ -62,7 +63,7 @@ public class FavoriteTvShowFragment extends Fragment {
 			viewModel.favoriteTvShows.observe(this, tvShows -> {
 				if (tvShows.data != null) {
 					progressBar.setVisibility(View.GONE);
-					adapter.setTvShows(tvShows.data);
+					adapter.submitList(tvShows.data);
 					adapter.notifyDataSetChanged();
 				}
 			});

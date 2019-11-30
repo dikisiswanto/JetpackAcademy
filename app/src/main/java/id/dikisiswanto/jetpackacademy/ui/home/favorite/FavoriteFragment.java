@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.favorite;
+package id.dikisiswanto.jetpackacademy.ui.home.favorite;
 
 
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import com.google.android.material.tabs.TabLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.ui.favorite.movie.FavoriteMovieFragment;
-import id.dikisiswanto.jetpackacademy.ui.favorite.tv.FavoriteTvShowFragment;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.movie.FavoriteMovieFragment;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.tv.FavoriteTvShowFragment;
 import id.dikisiswanto.jetpackacademy.utils.ViewPagerAdapter;
 
 import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;

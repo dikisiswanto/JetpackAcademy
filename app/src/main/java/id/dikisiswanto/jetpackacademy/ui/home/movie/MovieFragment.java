@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.movie;
+package id.dikisiswanto.jetpackacademy.ui.home.movie;
 
 
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
+import id.dikisiswanto.jetpackacademy.ui.home.MovieAdapter;
 import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
 /**

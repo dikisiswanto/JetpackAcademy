@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.tv;
+package id.dikisiswanto.jetpackacademy.ui.home.tv;
 
 import android.content.Intent;
 

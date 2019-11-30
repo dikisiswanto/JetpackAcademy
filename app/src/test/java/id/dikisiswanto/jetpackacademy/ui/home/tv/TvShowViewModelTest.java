@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.movie;
+package id.dikisiswanto.jetpackacademy.ui.home.tv;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
@@ -18,28 +18,29 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class MovieViewModelTest {
+public class TvShowViewModelTest {
 	@Rule
 	public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
-	private MovieViewModel viewModel;
+	private TvShowViewModel viewModel;
 	private MovieRepository movieRepository = mock(MovieRepository.class);
 
 	@Before
 	public void setUp() {
-		viewModel = new MovieViewModel(movieRepository);
+		viewModel = new TvShowViewModel(movieRepository);
 	}
 
 	@Test
-	public void getMovies() {
-		List<MovieEntity> dummyMovies = FakeDataDummy.getMovies();
-		MutableLiveData<List<MovieEntity>> movies = new MutableLiveData<>();
-		movies.setValue(dummyMovies);
+	public void getTvShows() {
+		List<MovieEntity> dummyTvShows = FakeDataDummy.getTvShows();
+		MutableLiveData<List<MovieEntity>> tvShows = new MutableLiveData<>();
+		tvShows.setValue(dummyTvShows);
 
-		when(movieRepository.getAllMovies()).thenReturn(movies);
+		when(movieRepository.getAllTvShows()).thenReturn(tvShows);
+
 		Observer<List<MovieEntity>> observer = mock(Observer.class);
-		viewModel.getMovies().observeForever(observer);
-		verify(observer).onChanged(dummyMovies);
+		viewModel.getTvShows().observeForever(observer);
+		verify(observer).onChanged(dummyTvShows);
 	}
 
 }

@@ -12,9 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
-import id.dikisiswanto.jetpackacademy.ui.favorite.FavoriteFragment;
-import id.dikisiswanto.jetpackacademy.ui.movie.MovieFragment;
-import id.dikisiswanto.jetpackacademy.ui.tv.TvShowFragment;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.FavoriteFragment;
+import id.dikisiswanto.jetpackacademy.ui.home.movie.MovieFragment;
+import id.dikisiswanto.jetpackacademy.ui.home.tv.TvShowFragment;
 
 public class HomeActivity extends AppCompatActivity {
 

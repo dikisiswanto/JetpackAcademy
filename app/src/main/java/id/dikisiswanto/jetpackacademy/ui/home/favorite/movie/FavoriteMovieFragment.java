@@ -1,4 +1,4 @@
-package id.dikisiswanto.jetpackacademy.ui.tv;
+package id.dikisiswanto.jetpackacademy.ui.home.favorite.movie;
 
 
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,18 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import id.dikisiswanto.jetpackacademy.R;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.FavoriteAdapter;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.FavoriteFragmentCallback;
 import id.dikisiswanto.jetpackacademy.viewmodel.ViewModelFactory;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TvShowFragment extends Fragment {
-	@BindView(R.id.rv_tvshow)
-	RecyclerView rvTvShow;
+public class FavoriteMovieFragment extends Fragment implements FavoriteFragmentCallback {
+
+	@BindView(R.id.rv_movie)
+	RecyclerView rvMovie;
 	@BindView(R.id.progress)
 	ProgressBar progressBar;
 
-	public TvShowFragment() {
+	public FavoriteMovieFragment() {
 		// Required empty public constructor
 	}
 
@@ -39,7 +41,7 @@ public class TvShowFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_tv_show, container, false);
+		return inflater.inflate(R.layout.fragment_favorite_movie, container, false);
 	}
 
 	@Override
@@ -52,40 +54,29 @@ public class TvShowFragment extends Fragment {
 	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		if (getActivity() != null) {
-			TvShowViewModel viewModel = obtainViewModel(getActivity());
-			TvShowAdapter adapter = new TvShowAdapter(getActivity());
+			FavoriteMovieViewModel viewModel = obtainViewModel(getActivity());
+			FavoriteAdapter adapter = new FavoriteAdapter(this);
 
 			progressBar.setVisibility(View.VISIBLE);
 
-			viewModel.setType(getString(R.string.title_tab2));
-			viewModel.tvShows.observe(this, tvShows -> {
-				if (tvShows != null) {
-					switch (tvShows.status) {
-						case LOADING:
-							progressBar.setVisibility(View.VISIBLE);
-							break;
-						case SUCCESS:
-							progressBar.setVisibility(View.GONE);
-							adapter.setTvShows(tvShows.data);
-							adapter.notifyDataSetChanged();
-							break;
-						case ERROR:
-							progressBar.setVisibility(View.GONE);
-							Toast.makeText(getContext(), getString(R.string.error_message), Toast.LENGTH_SHORT).show();
-					}
+			viewModel.setType(getString(R.string.title_tab1));
+			viewModel.favoriteMovies.observe(this, movies -> {
+				if (movies.data != null) {
+					progressBar.setVisibility(View.GONE);
+					adapter.submitList(movies.data);
+					adapter.notifyDataSetChanged();
 				}
 			});
 
-			rvTvShow.setLayoutManager(new GridLayoutManager(getContext(), 3));
-			rvTvShow.setHasFixedSize(true);
-			rvTvShow.setAdapter(adapter);
+			rvMovie.setLayoutManager(new GridLayoutManager(getContext(), 3));
+			rvMovie.setHasFixedSize(true);
+			rvMovie.setAdapter(adapter);
 		}
 	}
 
-	@NonNull
-	private static TvShowViewModel obtainViewModel(FragmentActivity activity) {
+	private FavoriteMovieViewModel obtainViewModel(FragmentActivity activity) {
 		// Use a Factory to inject dependencies into the ViewModel
 		ViewModelFactory factory = ViewModelFactory.getInstance(activity.getApplication());
-		return ViewModelProviders.of(activity, factory).get(TvShowViewModel.class);
+		return ViewModelProviders.of(activity, factory).get(FavoriteMovieViewModel.class);
 	}
 }

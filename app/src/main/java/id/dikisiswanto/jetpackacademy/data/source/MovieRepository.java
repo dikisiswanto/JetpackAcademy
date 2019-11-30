@@ -2,6 +2,8 @@ package id.dikisiswanto.jetpackacademy.data.source;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,16 +173,16 @@ public class MovieRepository implements MovieDataSource {
 	}
 
 	@Override
-	public LiveData<Resource<List<MovieEntity>>> getFavoriteMovies() {
-		return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutors) {
+	public LiveData<Resource<PagedList<MovieEntity>>> getFavoriteMovies() {
+		return new NetworkBoundResource<PagedList<MovieEntity>, List<MovieResponse>>(appExecutors) {
 
 			@Override
-			protected LiveData<List<MovieEntity>> loadFromDB() {
-				return localRepository.getFavoriteMovies();
+			protected LiveData<PagedList<MovieEntity>> loadFromDB() {
+				return new LivePagedListBuilder<>(localRepository.getFavoriteMovies(), 20).build();
 			}
 
 			@Override
-			protected Boolean shouldFetch(List<MovieEntity> data) {
+			protected Boolean shouldFetch(PagedList<MovieEntity> data) {
 				return false;
 			}
 
@@ -197,16 +199,16 @@ public class MovieRepository implements MovieDataSource {
 	}
 
 	@Override
-	public LiveData<Resource<List<MovieEntity>>> getFavoriteTvShows() {
-		return new NetworkBoundResource<List<MovieEntity>, List<MovieResponse>>(appExecutors) {
+	public LiveData<Resource<PagedList<MovieEntity>>> getFavoriteTvShows() {
+		return new NetworkBoundResource<PagedList<MovieEntity>, List<MovieResponse>>(appExecutors) {
 
 			@Override
-			protected LiveData<List<MovieEntity>> loadFromDB() {
-				return localRepository.getFavoriteTvShows();
+			protected LiveData<PagedList<MovieEntity>> loadFromDB() {
+				return new LivePagedListBuilder<>(localRepository.getFavoriteTvShows(), 20).build();
 			}
 
 			@Override
-			protected Boolean shouldFetch(List<MovieEntity> data) {
+			protected Boolean shouldFetch(PagedList<MovieEntity> data) {
 				return false;
 			}
 

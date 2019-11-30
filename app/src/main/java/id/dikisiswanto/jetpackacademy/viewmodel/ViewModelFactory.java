@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModelProvider;
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.di.Injection;
 import id.dikisiswanto.jetpackacademy.ui.detail.DetailViewModel;
-import id.dikisiswanto.jetpackacademy.ui.favorite.movie.FavoriteMovieViewModel;
-import id.dikisiswanto.jetpackacademy.ui.favorite.tv.FavoriteTvShowViewModel;
-import id.dikisiswanto.jetpackacademy.ui.movie.MovieViewModel;
-import id.dikisiswanto.jetpackacademy.ui.tv.TvShowViewModel;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.movie.FavoriteMovieViewModel;
+import id.dikisiswanto.jetpackacademy.ui.home.favorite.tv.FavoriteTvShowViewModel;
+import id.dikisiswanto.jetpackacademy.ui.home.movie.MovieViewModel;
+import id.dikisiswanto.jetpackacademy.ui.home.tv.TvShowViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 	private static volatile ViewModelFactory INSTANCE;

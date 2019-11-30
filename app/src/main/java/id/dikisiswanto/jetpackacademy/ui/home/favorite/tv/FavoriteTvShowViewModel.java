@@ -1,28 +1,25 @@
-package id.dikisiswanto.jetpackacademy.ui.tv;
+package id.dikisiswanto.jetpackacademy.ui.home.favorite.tv;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
-
-import java.util.List;
+import androidx.paging.PagedList;
 
 import id.dikisiswanto.jetpackacademy.data.source.MovieRepository;
 import id.dikisiswanto.jetpackacademy.data.source.local.entity.MovieEntity;
 import id.dikisiswanto.jetpackacademy.vo.Resource;
 
-public class TvShowViewModel extends ViewModel {
-	private MutableLiveData<String> result = new MutableLiveData<>();
+public class FavoriteTvShowViewModel extends ViewModel {
+	MutableLiveData<String> type = new MutableLiveData<>();
 	private MovieRepository movieRepository;
+	LiveData<Resource<PagedList<MovieEntity>>> favoriteTvShows = Transformations.switchMap(type, data -> movieRepository.getFavoriteTvShows());
 
-	public TvShowViewModel(MovieRepository movieRepository) {
+	public FavoriteTvShowViewModel(MovieRepository movieRepository) {
 		this.movieRepository = movieRepository;
 	}
 
-	LiveData<Resource<List<MovieEntity>>> tvShows = Transformations.switchMap(result, data ->
-			movieRepository.getAllTvShows());
-
 	public void setType(String type) {
-		result.setValue(type);
+		this.type.setValue(type);
 	}
 }

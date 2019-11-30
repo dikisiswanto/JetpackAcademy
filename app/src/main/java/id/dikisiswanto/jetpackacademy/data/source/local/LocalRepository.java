@@ -1,6 +1,7 @@
 package id.dikisiswanto.jetpackacademy.data.source.local;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 
 import java.util.List;
 
@@ -38,11 +39,11 @@ public class LocalRepository {
 		return movieDao.getTvShowById(id);
 	}
 
-	public LiveData<List<MovieEntity>> getFavoriteMovies() {
+	public DataSource.Factory<Integer, MovieEntity> getFavoriteMovies() {
 		return movieDao.getFavoriteMovies();
 	}
 
-	public LiveData<List<MovieEntity>> getFavoriteTvShows() {
+	public DataSource.Factory<Integer, MovieEntity> getFavoriteTvShows() {
 		return movieDao.getFavoriteTvShows();
 	}
 

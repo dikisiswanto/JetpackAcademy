@@ -1,6 +1,7 @@
 package id.dikisiswanto.jetpackacademy.data.source;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.PagedList;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ public interface MovieDataSource {
 
 	LiveData<Resource<MovieEntity>> getTvShowById(String tvShowId);
 
-	LiveData<Resource<List<MovieEntity>>> getFavoriteMovies();
+	LiveData<Resource<PagedList<MovieEntity>>> getFavoriteMovies();
 
-	LiveData<Resource<List<MovieEntity>>> getFavoriteTvShows();
+	LiveData<Resource<PagedList<MovieEntity>>> getFavoriteTvShows();
 
 	void setFavoriteStatus(MovieEntity movieEntity);
 }
