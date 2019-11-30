@@ -53,6 +53,7 @@ public class DetailActivityTest {
 	@After
 	public void tearDown() {
 		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+		activityTestRule.finishActivity();
 	}
 
 	@Test

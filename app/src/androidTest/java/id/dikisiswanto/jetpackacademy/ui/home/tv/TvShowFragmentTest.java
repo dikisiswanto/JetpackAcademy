@@ -42,6 +42,7 @@ public class TvShowFragmentTest {
 	@After
 	public void tearDown() {
 		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+		activityRule.finishActivity();
 	}
 
 	@Test

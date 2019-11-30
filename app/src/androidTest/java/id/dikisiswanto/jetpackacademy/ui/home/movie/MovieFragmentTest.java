@@ -41,6 +41,7 @@ public class MovieFragmentTest {
 	@After
 	public void tearDown() {
 		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+		activityRule.finishActivity();
 	}
 
 	@Test
