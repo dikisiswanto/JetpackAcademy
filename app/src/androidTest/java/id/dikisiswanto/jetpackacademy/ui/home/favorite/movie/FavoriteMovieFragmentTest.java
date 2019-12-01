@@ -36,6 +36,7 @@ public class FavoriteMovieFragmentTest {
 	@After
 	public void tearDown() {
 		IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getEspressoIdlingResource());
+		activityRule.finishActivity();
 	}
 
 	@Test
