@@ -1,9 +1,10 @@
 # JetpackAcademy
-Project Jetpack Academy Dicoding
-![](https://github.com/dikisiswanto/JetpackAcademy/workflows/.github/workflows/gradle.yml/badge.svg)
+Project Belajar Android Jetpack Pro Dicoding
+
+![](https://github.com/dikisiswanto/JetpackAcademy/workflows/Java%20CI/badge.svg)
 
 ## Deskripsi
-_Project_ __Jetpack Academy__ adalah _submission project_ untuk kelas [__Dicoding - Belajar Android Jetpack Pro__](https://www.dicoding.com/academies/129/). Repository ini berisi _source code_ utuh dari _submission_ awal sampai _submission_ final.
+_Project_ __JetpackAcademy__ adalah _submission project_ untuk kelas [__Dicoding - Belajar Android Jetpack Pro__](https://www.dicoding.com/academies/129/). Repository ini berisi _source code_ utuh dari _submission_ awal sampai _submission_ final.
 Repository ini juga memiliki _branch_ untuk masing-masing _submission_.
 
 ## Tampilan aplikasi
